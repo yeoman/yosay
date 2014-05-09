@@ -38,6 +38,7 @@ Tell Yeoman what to say.
 
 Usage
   $ echo <string> | yosay
+  $ echo <string> | yosay --maxLength 8
 
 Example
   $ echo "Sindre is a horse" | yosay
