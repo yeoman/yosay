@@ -1,23 +1,24 @@
 {
   "name": "yosay",
   "version": "0.1.0",
-  "description": "Tell Yeoman what to say.",
+  "description": "Tell Yeoman what to say",
   "license": "BSD",
   "keywords": [
     "cli",
     "bin",
     "yeoman",
+    "yo",
     "cowsay"
   ],
   "homepage": "http://yeoman.io",
   "author": "The Yeoman Team",
   "repository": "yeoman/yosay",
   "bin": {
-    "yosay": "lib/cli.js"
+    "yosay": "cli.js"
   },
-  "main": "lib/yosay.js",
   "files": [
-    "lib"
+    "index.js",
+    "cli.js"
   ],
   "engines": {
     "node": ">=0.10.0"

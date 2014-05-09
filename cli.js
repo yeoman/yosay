@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 'use strict';
-
-var pkg = require('../package.json');
-var yosay = require('./yosay');
+var pkg = require('./package.json');
+var yosay = require('./index');
 var argv = require('minimist')(process.argv.slice(2));
 
 function stdin(cb) {

@@ -1,16 +1,20 @@
 # yosay [![Build Status](https://travis-ci.org/yeoman/yosay.svg?branch=master)](https://travis-ci.org/yeoman/yosay)
 
-> Tell Yeoman what to say.
+> Tell Yeoman what to say
+
+![](screenshot.png)
 
 
 ## Install
-```bash
+
+```sh
 $ npm install --save yosay
 ```
 
 
 ## Usage
-```javascript
+
+```js
 var yosay = require('yosay');
 
 yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gum!');
@@ -30,7 +34,8 @@ yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gu
 
 
 ## CLI
-```bash
+
+```sh
 $ npm install --global yosay
 $ yosay --help
 
