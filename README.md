@@ -39,14 +39,13 @@ yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gu
 $ npm install --global yosay
 $ yosay --help
 
-Tell Yeoman what to say.
-
 Usage
+  $ yosay <string>
+  $ yosay <string> --maxLength 8
   $ echo <string> | yosay
-  $ echo <string> | yosay --maxLength 8
 
 Example
-  $ echo "Sindre is a horse" | yosay
+  $ yosay "Sindre is a horse"
 
      _-----_
     |       |    .--------------------------.
