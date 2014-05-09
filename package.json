@@ -1,0 +1,37 @@
+{
+  "name": "yosay",
+  "version": "0.0.0",
+  "description": "Tell Yeoman what to say.",
+  "license": "BSD",
+  "keywords": [
+    "cli",
+    "bin",
+    "yeoman",
+    "cowsay"
+  ],
+  "homepage": "http://yeoman.io",
+  "author": "The Yeoman Team",
+  "repository": "yeoman/yosay",
+  "bin": {
+    "yosay": "lib/cli.js"
+  },
+  "main": "lib/yosay.js",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "pad-component": "0.0.1",
+    "word-wrap": "^0.1.2",
+    "chalk": "^0.4.0",
+    "minimist": "0.0.9"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
