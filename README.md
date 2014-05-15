@@ -19,7 +19,7 @@ $ npm install --save yosay
 ```js
 var yosay = require('yosay');
 
-yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gum!');
+console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gum!'));
 
 /*
      _-----_
