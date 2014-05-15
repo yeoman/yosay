@@ -18,18 +18,27 @@ var defaultGreeting =
   '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
 
 module.exports = function (message, options) {
-  message = message || 'Welcome to Yeoman, ladies and gentlemen!';
+  message = (message || 'Welcome to Yeoman, ladies and gentlemen!').trim();
   options = options || {};
 
-  var maxLength = options.maxLength || 24;
+  var maxLength = 24;
+  var frame;
 
-  var frame = {
+  if (options.maxLength) {
+    maxLength = message.toLowerCase().split(' ').sort()[0].length;
+
+    if (maxLength < options.maxLength) {
+      maxLength = options.maxLength;
+    }
+  }
+
+  frame = {
     top: '.' + pad('', maxLength + 2, '-') + '.',
     side: '|',
     bottom: '\'' + pad('', maxLength + 2, '-') + '\''
   };
 
-  return wrap(message.trim(), { width: maxLength })
+  return wrap(message, { width: maxLength })
     .split(/\n/)
     .reduce(function (greeting, str, index, array) {
       str = pad(str.trim(), maxLength);
