@@ -27,10 +27,11 @@
     "test": "mocha"
   },
   "dependencies": {
-    "pad-component": "0.0.1",
-    "word-wrap": "^0.1.2",
     "chalk": "^0.4.0",
-    "minimist": "0.0.9"
+    "get-stdin": "^0.1.0",
+    "minimist": "0.0.9",
+    "pad-component": "0.0.1",
+    "word-wrap": "^0.1.2"
   },
   "devDependencies": {
     "mocha": "*"
