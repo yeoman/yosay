@@ -37,7 +37,7 @@ console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy a
 
 ## CLI
 
-```sh
+```
 $ npm install --global yosay
 $ yosay --help
 
@@ -47,7 +47,7 @@ Usage
   $ echo <string> | yosay
 
 Example
-  $ yosay "Sindre is a horse"
+  $ yosay 'Sindre is a horse'
 
      _-----_
     |       |    .--------------------------.
