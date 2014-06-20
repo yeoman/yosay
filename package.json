@@ -30,7 +30,7 @@
     "ansi-regex": "^0.2.1",
     "ansi-styles": "^1.1.0",
     "chalk": "^0.4.0",
-    "minimist": "0.0.9",
+    "minimist": "^0.2.0",
     "pad-component": "0.0.1",
     "string-length": "^0.1.2",
     "strip-ansi": "^0.2.1",
