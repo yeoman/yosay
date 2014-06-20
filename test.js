@@ -1,6 +1,9 @@
 'use strict';
 var assert = require('assert');
-var yosay = require('./index');
+var chalk = require('chalk');
+var yosay = require('./');
+
+console.log(yosay(chalk.red('WHAT DOES THE YO SAY??? ') + chalk.yellow('\'ALLO \'ALLO')));
 
 describe('yosay', function () {
   it('should return correctly formatted string', function () {
@@ -19,8 +22,6 @@ describe('yosay', function () {
   });
 
   describe('ansi', function () {
-    var chalk = require('chalk');
-
     it('should display ansi styling correctly', function () {
       var expected = '\n     _-----_\n    |       |    .--------------------------.\n    |\u001b[31m--(o)--\u001b[39m|    \u001b[0m|\u001b[0m            \u001b[0m\u001b[47m\u001b[31mH\u001b[47m\u001b[31mi\u001b[0m            \u001b[0m|\u001b[0m\n   `---------´   \u001b[0m\'--------------------------\'\n    \u001b[33m(\u001b[39m _\u001b[33m´U`\u001b[39m_ \u001b[33m)\u001b[39m    \n    /___A___\\    \n     \u001b[33m|  ~  |\u001b[39m     \n   __\u001b[33m\'.___.\'\u001b[39m__   \n ´   \u001b[31m`  |\u001b[39m° \u001b[31m´ Y\u001b[39m ` \n';
       assert.equal(yosay(chalk.red.bgWhite('Hi')), expected);
