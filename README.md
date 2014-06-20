@@ -34,6 +34,8 @@ console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy a
  */
 ```
 
+*You can style your text with [chalk](https://github.com/sindresorhus/chalk) before passing it to `yosay`.*
+
 
 ## CLI
 
