@@ -1,5 +1,4 @@
 'use strict';
-
 var chalk = require('chalk');
 var pad = require('pad-component');
 var wrap = require('word-wrap');
@@ -43,7 +42,6 @@ module.exports = function (message, options) {
 
   var maxLength = 24;
   var frame;
-  var unstyledMessage;
   var styledIndexes = {};
   var completedString = '';
   var regExNewLine;

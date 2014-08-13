@@ -41,15 +41,18 @@ console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy a
 
 ```
 $ npm install --global yosay
+```
+
+```
 $ yosay --help
 
-Usage
-  $ yosay <string>
-  $ yosay <string> --maxLength 8
-  $ echo <string> | yosay
+  Usage
+    yosay <string>
+    yosay <string> --maxLength 8
+    echo <string> | yosay
 
-Example
-  $ yosay 'Sindre is a horse'
+  Example
+    yosay 'Sindre is a horse'
 
      _-----_
     |       |    .--------------------------.
@@ -64,5 +67,6 @@ Example
 
 
 ## License
+
 [BSD license](http://opensource.org/licenses/bsd-license.php)
 Copyright (c) Google
