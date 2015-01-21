@@ -38,7 +38,7 @@
     "pad-component": "0.0.1",
     "string-length": "^1.0.0",
     "strip-ansi": "^2.0.0",
-    "taketalk": "^0.1.1",
+    "taketalk": "^1.0.0",
     "word-wrap": "^1.0.0"
   },
   "devDependencies": {
