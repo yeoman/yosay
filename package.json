@@ -33,7 +33,7 @@
   "dependencies": {
     "ansi-regex": "^1.0.0",
     "ansi-styles": "^2.0.0",
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "minimist": "^1.1.0",
     "pad-component": "0.0.1",
     "string-length": "^1.0.0",
