@@ -91,6 +91,39 @@ describe('yosay', function () {
         done();
       });
     });
+
+    it('should handle a new line', function () {
+      var testName = 'new-line';
+      var expected = yosay('hi\nok');
+
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
+
+    it('should handle 2 new lines', function () {
+      var testName = '2-new-lines';
+      var expected = yosay('hi\n\nok');
+
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
+
+    it('should handle 3 new lines', function () {
+      var testName = '3-new-lines';
+      var expected = yosay('hi\n\n\nok');
+
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
   });
 })
 
