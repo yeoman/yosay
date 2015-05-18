@@ -4,6 +4,7 @@
   "description": "Tell Yeoman what to say",
   "license": "BSD-2-Clause",
   "keywords": [
+    "cli-app",
     "cli",
     "bin",
     "yeoman",
@@ -15,11 +16,9 @@
     "ansi"
   ],
   "homepage": "http://yeoman.io",
-  "author": "The Yeoman Team",
+  "author": "Yeoman",
   "repository": "yeoman/yosay",
-  "bin": {
-    "yosay": "cli.js"
-  },
+  "bin": "cli.js",
   "files": [
     "index.js",
     "cli.js"
