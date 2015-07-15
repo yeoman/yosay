@@ -127,7 +127,7 @@ module.exports = function (message, options) {
         (greeting[index + topOffset] || pad.left('', leftOffset)) +
         frame.side + ' ' + paddedString + ' ' + frame.side;
 
-      if (!array[index + 1]) {
+      if (array.length === index + 1) {
         greeting[index + topOffset + 1] =
           (greeting[index + topOffset + 1] || pad.left('', leftOffset)) +
           frame.bottom;

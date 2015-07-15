@@ -91,6 +91,16 @@ describe('yosay', function () {
         done();
       });
     });
+
+    it('should handle new line properly', function (done) {
+      var testName = 'handle-new-line';
+      var expected = yosay('first line\nthird line\n\nsixth line');
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
   });
 })
 
