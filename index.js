@@ -6,6 +6,7 @@ var stringWidth = require('string-width');
 var stripAnsi = require('strip-ansi');
 var ansiStyles = require('ansi-styles');
 var ansiRegex = require('ansi-regex')();
+var repeating = require('repeating');
 
 var topOffset = 3;
 var leftOffset = 17;
@@ -57,9 +58,9 @@ module.exports = function (message, options) {
   regExNewLine = new RegExp('\\s{' + maxLength + '}');
 
   frame = {
-    top: '.' + pad('', maxLength + 2, '-') + '.',
+    top: '.' + repeating('-', maxLength + 2) + '.',
     side: ansiStyles.reset.open + '|' + ansiStyles.reset.open,
-    bottom: ansiStyles.reset.open + '\'' + pad('', maxLength + 2, '-') + '\''
+    bottom: ansiStyles.reset.open + '\'' + repeating('-', maxLength + 2) + '\''
   };
 
   message.replace(ansiRegex, function (match, offset) {
