@@ -2,7 +2,7 @@
 var chalk = require('chalk');
 var pad = require('pad-component');
 var wrap = require('word-wrap');
-var stringLength = require('string-length');
+var stringWidth = require('string-width');
 var stripAnsi = require('strip-ansi');
 var ansiStyles = require('ansi-styles');
 var ansiRegex = require('ansi-regex')();
@@ -113,7 +113,7 @@ module.exports = function (message, options) {
         .trim();
 
       paddedString = pad({
-        length: stringLength(str),
+        length: stringWidth(str),
         valueOf: function () {
           return ansiStyles.reset.open + str + ansiStyles.reset.open;
         }

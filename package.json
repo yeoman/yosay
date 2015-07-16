@@ -35,7 +35,7 @@
     "chalk": "^1.0.0",
     "minimist": "^1.1.0",
     "pad-component": "0.0.1",
-    "string-length": "^1.0.0",
+    "string-width": "^1.0.0",
     "strip-ansi": "^2.0.0",
     "taketalk": "^1.0.0",
     "word-wrap": "^1.0.0"

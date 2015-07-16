@@ -101,6 +101,16 @@ describe('yosay', function () {
         done();
       });
     });
+
+    it('should handle fullwidth characters', function (done) {
+      var testName = 'handle-fullwidth';
+      var expected = yosay('项目可以更新了');
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
   });
 })
 
