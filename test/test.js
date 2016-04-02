@@ -94,7 +94,7 @@ describe('yosay', function () {
 
     it('should handle new line properly', function (done) {
       var testName = 'handle-new-line';
-      var expected = yosay('first line\nthird line\n\nsixth line');
+      var expected = yosay('first line\nsecond line\n\nfourth line');
       fs.readFile(getFixturePath(testName), function (err, data) {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
@@ -105,6 +105,17 @@ describe('yosay', function () {
     it('should handle fullwidth characters', function (done) {
       var testName = 'handle-fullwidth';
       var expected = yosay('项目可以更新了');
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
+
+    it('should display long words correctly', function (done) {
+      var testName = 'long-words';
+      var expected = yosay('iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns');
+
       fs.readFile(getFixturePath(testName), function (err, data) {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);

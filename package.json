@@ -33,13 +33,13 @@
     "ansi-regex": "^2.0.0",
     "ansi-styles": "^2.0.0",
     "chalk": "^1.0.0",
+    "greedy-wrap": "^0.1.4",
     "minimist": "^1.1.0",
     "pad-component": "0.0.1",
     "repeating": "^2.0.0",
     "string-width": "^1.0.0",
     "strip-ansi": "^3.0.0",
-    "taketalk": "^1.0.0",
-    "word-wrap": "^1.0.0"
+    "taketalk": "^1.0.0"
   },
   "devDependencies": {
     "mocha": "*"

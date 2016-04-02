@@ -1,7 +1,7 @@
 'use strict';
 var chalk = require('chalk');
 var pad = require('pad-component');
-var wrap = require('word-wrap');
+var wrap = require('greedy-wrap');
 var stringWidth = require('string-width');
 var stripAnsi = require('strip-ansi');
 var ansiStyles = require('ansi-styles');
