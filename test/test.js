@@ -1,14 +1,18 @@
 'use strict';
+/* eslint-env mocha */
 var assert = require('assert');
-var chalk = require('chalk');
 var fs = require('fs');
 var path = require('path');
+var chalk = require('chalk');
 var yosay = require('../');
+
+function getFixturePath(testName) {
+  return path.join(__dirname, 'fixture', testName + '.json');
+}
 
 console.log(yosay(chalk.red('WHAT DOES THE YO SAY??? ') + chalk.yellow('\'ALLO \'ALLO')));
 
 describe('yosay', function () {
-
   // New test template.
   //
   // it('should _____', function (done) {
@@ -38,7 +42,7 @@ describe('yosay', function () {
 
   it('should allow customization of line length', function (done) {
     var testName = 'length-customization';
-    var expected = yosay('Hi', { maxLength: 8 });
+    var expected = yosay('Hi', {maxLength: 8});
 
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
@@ -49,7 +53,7 @@ describe('yosay', function () {
 
   it('should override a maxLength setting that is too short', function (done) {
     var testName = 'override-maxLength';
-    var expected = yosay('Hello, buddy!', { maxLength: 4 });
+    var expected = yosay('Hello, buddy!', {maxLength: 4});
 
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
@@ -123,12 +127,4 @@ describe('yosay', function () {
       });
     });
   });
-})
-
-function createFixture(testName, str) {
-  fs.writeFile(getFixturePath(testName), JSON.stringify(str));
-}
-
-function getFixturePath(testName) {
-  return path.join(__dirname, 'fixture', testName + '.json');
-}
+});

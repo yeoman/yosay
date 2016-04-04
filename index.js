@@ -71,7 +71,7 @@ module.exports = function (message, options) {
     styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
   });
 
-  return wrap(stripAnsi(message), maxLength, { hard: true })
+  return wrap(stripAnsi(message), maxLength, {hard: true})
     .split(/\n/)
     .reduce(function (greeting, str, index, array) {
       var paddedString;
@@ -107,9 +107,9 @@ module.exports = function (message, options) {
             return styledIndexes[charIndex] + char;
           } else if (hasContinuedStyle >= 2) {
             return continuedStyle + char;
-          } else {
-            return char;
           }
+
+          return char;
         })
         .trim();
 

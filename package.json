@@ -15,7 +15,7 @@
     "message",
     "ansi"
   ],
-  "homepage": "http://yeoman.io",
+  "homepage": "yeoman.io",
   "author": "Yeoman",
   "repository": "yeoman/yosay",
   "bin": "cli.js",
@@ -27,13 +27,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "xo && mocha"
   },
   "dependencies": {
     "ansi-regex": "^2.0.0",
     "ansi-styles": "^2.0.0",
     "chalk": "^1.0.0",
-    "minimist": "^1.1.0",
     "pad-component": "0.0.1",
     "repeating": "^2.0.0",
     "string-width": "^1.0.0",
@@ -42,6 +41,10 @@
     "wrap-ansi": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "xo": "*"
+  },
+  "xo": {
+    "space": true
   }
 }
