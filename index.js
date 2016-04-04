@@ -1,7 +1,7 @@
 'use strict';
 var chalk = require('chalk');
 var pad = require('pad-component');
-var wrap = require('word-wrap');
+var wrap = require('wrap-ansi');
 var stringWidth = require('string-width');
 var stripAnsi = require('strip-ansi');
 var ansiStyles = require('ansi-styles');
@@ -71,7 +71,7 @@ module.exports = function (message, options) {
     styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
   });
 
-  return wrap(stripAnsi(message), { width: maxLength })
+  return wrap(stripAnsi(message), maxLength, { hard: true })
     .split(/\n/)
     .reduce(function (greeting, str, index, array) {
       var paddedString;
