@@ -19,8 +19,8 @@ describe('yosay', function () {
   //   var testName = 'short-description';
   //   var expected = yosay('String to test');
   //
-  //   // run once, then remove from test:
-  //   createFixture(testName, expected);
+  //   // Create fixture: run once, then remove from test:
+  //   fs.writeFile(getFixturePath(testName), JSON.stringify(expected));
   //
   //   fs.readFile(getFixturePath(testName), function (err, data) {
   //     assert.ifError(err);
