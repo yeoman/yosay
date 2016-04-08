@@ -23,12 +23,12 @@ console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy a
 
 /*
      _-----_
-    |       |    .--------------------------.
-    |--(o)--|    | Hello, and welcome to my |
-   `---------´   | fantastic generator full |
-    ( _´U`_ )    |   of whimsy and bubble   |
-    /___A___\    |           gum!           |
-     |  ~  |     '--------------------------'
+    |       |    ╭──────────────────────────╮
+    |--(o)--|    │ Hello, and welcome to my │
+   `---------´   │ fantastic generator full │
+    ( _´U`_ )    │   of whimsy and bubble   │
+    /___A___\    │           gum!           │
+     |  ~  |     ╰──────────────────────────╯
    __'.___.'__
  ´   `  |° ´ Y `
  */
@@ -55,9 +55,9 @@ $ yosay --help
     yosay 'Sindre is a horse'
 
      _-----_
-    |       |    .--------------------------.
-    |--(o)--|    |     Sindre is a horse    |
-   `---------´   '--------------------------'
+    |       |    ╭──────────────────────────╮
+    |--(o)--|    │     Sindre is a horse    │
+   `---------´   ╰──────────────────────────╯
     ( _´U`_ )
     /___A___\
      |  ~  |

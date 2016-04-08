@@ -33,6 +33,7 @@
     "ansi-regex": "^2.0.0",
     "ansi-styles": "^2.0.0",
     "chalk": "^1.0.0",
+    "cli-boxes": "^1.0.0",
     "pad-component": "0.0.1",
     "repeating": "^2.0.0",
     "string-width": "^1.0.0",

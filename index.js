@@ -7,7 +7,9 @@ var stripAnsi = require('strip-ansi');
 var ansiStyles = require('ansi-styles');
 var ansiRegex = require('ansi-regex')();
 var repeating = require('repeating');
+var cliBoxes = require('cli-boxes');
 
+var border = cliBoxes.round;
 var topOffset = 3;
 var leftOffset = 17;
 var defaultGreeting =
@@ -57,10 +59,12 @@ module.exports = function (message, options) {
 
   regExNewLine = new RegExp('\\s{' + maxLength + '}');
 
+  var borderHorizontal = repeating(border.horizontal, maxLength + 2);
+
   frame = {
-    top: '.' + repeating('-', maxLength + 2) + '.',
-    side: ansiStyles.reset.open + '|' + ansiStyles.reset.open,
-    bottom: ansiStyles.reset.open + '\'' + repeating('-', maxLength + 2) + '\''
+    top: border.topLeft + borderHorizontal + border.topRight,
+    side: ansiStyles.reset.open + border.vertical + ansiStyles.reset.open,
+    bottom: ansiStyles.reset.open + border.bottomLeft + borderHorizontal + border.bottomRight
   };
 
   message.replace(ansiRegex, function (match, offset) {
