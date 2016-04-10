@@ -10,15 +10,15 @@ var repeating = require('repeating');
 var cliBoxes = require('cli-boxes');
 
 var border = cliBoxes.round;
-var topOffset = 3;
+var topOffset = 4;
 var leftOffset = 17;
 var defaultGreeting =
-  '\n     _-----_' +
+  '\n     _-----_     ' +
   '\n    |       |    ' +
   '\n    |' + chalk.red('--(o)--') + '|    ' +
   '\n   `---------´   ' +
   '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '    ' +
-  '\n    /___A___\\    ' +
+  '\n    /___A___\\   /' +
   '\n     ' + chalk.yellow('|  ~  |') + '     ' +
   '\n   __' + chalk.yellow('\'.___.\'') + '__   ' +
   '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
@@ -125,6 +125,12 @@ module.exports = function (message, options) {
       }, maxLength);
 
       if (index === 0) {
+        if (array.length === 2) {
+          topOffset -= 1;
+        }
+        if (array.length >= 3) {
+          topOffset -= 2;
+        }
         greeting[topOffset - 1] += frame.top;
       }
 
