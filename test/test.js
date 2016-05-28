@@ -139,5 +139,16 @@ describe('yosay', function () {
         done();
       });
     });
+
+    it('should overflow when lines exceed the default greeting', function (done) {
+      var testName = 'overflow';
+      var expected = yosay('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball.', {maxLength: 11});
+
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
   });
 });
