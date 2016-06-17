@@ -10,18 +10,26 @@ var repeating = require('repeating');
 var cliBoxes = require('cli-boxes');
 
 var border = cliBoxes.round;
-var topOffset = 3;
+var topOffset = 4;
 var leftOffset = 17;
 var defaultGreeting =
-  '\n     _-----_' +
+  '\n     _-----_     ' +
   '\n    |       |    ' +
   '\n    |' + chalk.red('--(o)--') + '|    ' +
   '\n   `---------´   ' +
   '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '    ' +
-  '\n    /___A___\\    ' +
+  '\n    /___A___\\   /' +
   '\n     ' + chalk.yellow('|  ~  |') + '     ' +
   '\n   __' + chalk.yellow('\'.___.\'') + '__   ' +
   '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
+
+// A total line with 45 characters consists of:
+// 28 chars for the top frame of the speech bubble → `╭──────────────────────────╮`
+// 17 chars for the yeoman character »column«      → `    /___A___\   /`
+var TOTAL_CHARACTERS_PER_LINE = 45;
+
+// The speech bubble will overflow the Yeoman character if the message is too long.
+var MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
 
 module.exports = function (message, options) {
   message = (message || 'Welcome to Yeoman, ladies and gentlemen!').trim();
@@ -125,6 +133,29 @@ module.exports = function (message, options) {
       }, maxLength);
 
       if (index === 0) {
+        // Need to adjust the top position of the speech bubble depending on the
+        // amount of lines of the message.
+        if (array.length === 2) {
+          topOffset -= 1;
+        }
+
+        if (array.length >= 3) {
+          topOffset -= 2;
+        }
+
+        // The speech bubble will overflow the Yeoman character if the message
+        // is too long. So we vertically center the bubble by adding empty lines
+        // on top of the greeting.
+        if (array.length > MAX_MESSAGE_LINES_BEFORE_OVERFLOW) {
+          var emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
+
+          for (var i = 0; i < emptyLines; i++) {
+            greeting.unshift('');
+          }
+
+          frame.top = pad.left(frame.top, TOTAL_CHARACTERS_PER_LINE);
+        }
+
         greeting[topOffset - 1] += frame.top;
       }
 

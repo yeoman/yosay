@@ -40,6 +40,17 @@ describe('yosay', function () {
     });
   });
 
+  it('should return correctly formatted string in two lines', function (done) {
+    var testName = 'correctly-formatted-two-lines';
+    var expected = yosay('Welcome to Yeoman, ladies and gentlemen!');
+
+    fs.readFile(getFixturePath(testName), function (err, data) {
+      assert.ifError(err);
+      assert.equal(JSON.parse(data), expected);
+      done();
+    });
+  });
+
   it('should allow customization of line length', function (done) {
     var testName = 'length-customization';
     var expected = yosay('Hi', {maxLength: 8});
@@ -121,6 +132,17 @@ describe('yosay', function () {
     it('should display long words correctly', function (done) {
       var testName = 'long-words';
       var expected = yosay('iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns');
+
+      fs.readFile(getFixturePath(testName), function (err, data) {
+        assert.ifError(err);
+        assert.equal(JSON.parse(data), expected);
+        done();
+      });
+    });
+
+    it('should overflow when lines exceed the default greeting', function (done) {
+      var testName = 'overflow';
+      var expected = yosay('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball.', {maxLength: 11});
 
       fs.readFile(getFixturePath(testName), function (err, data) {
         assert.ifError(err);
