@@ -22,13 +22,13 @@ const yosay = require('yosay');
 console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gum!'));
 
 /*
-     _-----_
-    |       |    ╭──────────────────────────╮
-    |--(o)--|    │ Hello, and welcome to my │
-   `---------´   │ fantastic generator full │
-    ( _´U`_ )    │   of whimsy and bubble   │
-    /___A___\    │           gum!           │
-     |  ~  |     ╰──────────────────────────╯
+     _-----_     ╭──────────────────────────╮
+    |       |    │ Hello, and welcome to my │
+    |--(o)--|    │ fantastic generator full │
+   `---------´   │   of whimsy and bubble   │
+    ( _´U`_ )    │           gum!           │
+    /___A___\   /╰──────────────────────────╯
+     |  ~  |
    __'.___.'__
  ´   `  |° ´ Y `
  */
@@ -55,11 +55,11 @@ $ yosay --help
     yosay 'Sindre is a horse'
 
      _-----_
-    |       |    ╭──────────────────────────╮
-    |--(o)--|    │     Sindre is a horse    │
-   `---------´   ╰──────────────────────────╯
-    ( _´U`_ )
-    /___A___\
+    |       |
+    |--(o)--|    ╭──────────────────────────╮
+   `---------´   │     Sindre is a horse    │
+    ( _´U`_ )    ╰──────────────────────────╯
+    /___A___\   /
      |  ~  |
    __'.___.'__
  ´   `  |° ´ Y `
