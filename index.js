@@ -10,7 +10,6 @@ var repeating = require('repeating');
 var cliBoxes = require('cli-boxes');
 
 var border = cliBoxes.round;
-var topOffset = 4;
 var leftOffset = 17;
 var defaultGreeting =
   '\n     _-----_     ' +
@@ -22,14 +21,6 @@ var defaultGreeting =
   '\n     ' + chalk.yellow('|  ~  |') + '     ' +
   '\n   __' + chalk.yellow('\'.___.\'') + '__   ' +
   '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
-
-// A total line with 45 characters consists of:
-// 28 chars for the top frame of the speech bubble → `╭──────────────────────────╮`
-// 17 chars for the yeoman character »column«      → `    /___A___\   /`
-var TOTAL_CHARACTERS_PER_LINE = 45;
-
-// The speech bubble will overflow the Yeoman character if the message is too long.
-var MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
 
 module.exports = function (message, options) {
   message = (message || 'Welcome to Yeoman, ladies and gentlemen!').trim();
@@ -56,12 +47,26 @@ module.exports = function (message, options) {
   var styledIndexes = {};
   var completedString = '';
   var regExNewLine;
+  var topOffset = 4;
+
+  // Amount of characters of the yeoman character »column«      → `    /___A___\   /`
+  var YEOMAN_CHARACTER_WIDTH = 17;
+
+  // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
+  var DEFAULT_TOP_FRAME_WIDTH = 28;
+
+  // Amount of characters of a total line
+  var TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
+
+  // The speech bubble will overflow the Yeoman character if the message is too long.
+  var MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
 
   if (options.maxLength) {
     maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
 
     if (maxLength < options.maxLength) {
       maxLength = options.maxLength;
+      TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
     }
   }
 
