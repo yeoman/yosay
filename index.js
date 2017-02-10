@@ -6,7 +6,6 @@ var stringWidth = require('string-width');
 var stripAnsi = require('strip-ansi');
 var ansiStyles = require('ansi-styles');
 var ansiRegex = require('ansi-regex')();
-var repeating = require('repeating');
 var cliBoxes = require('cli-boxes');
 
 var border = cliBoxes.round;
@@ -72,7 +71,7 @@ module.exports = function (message, options) {
 
   regExNewLine = new RegExp('\\s{' + maxLength + '}');
 
-  var borderHorizontal = repeating(border.horizontal, maxLength + 2);
+  var borderHorizontal = border.horizontal.repeat(maxLength + 2);
 
   frame = {
     top: border.topLeft + borderHorizontal + border.topRight,
