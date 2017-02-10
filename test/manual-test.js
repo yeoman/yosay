@@ -1,6 +1,6 @@
 'use strict';
-var chalk = require('chalk');
-var yosay = require('../');
+const chalk = require('chalk');
+const yosay = require('../');
 
 /*
  * Yo. Fire this file locally with `node test/manual-test.js` at least after you

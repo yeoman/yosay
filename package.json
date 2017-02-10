@@ -3,10 +3,23 @@
   "version": "1.2.1",
   "description": "Tell Yeoman what to say",
   "license": "BSD-2-Clause",
+  "repository": "yeoman/yosay",
+  "homepage": "yeoman.io",
+  "author": "Yeoman",
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && mocha"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
   "keywords": [
     "cli-app",
     "cli",
-    "bin",
     "yeoman",
     "yo",
     "cowsay",
@@ -15,20 +28,6 @@
     "message",
     "ansi"
   ],
-  "homepage": "yeoman.io",
-  "author": "Yeoman",
-  "repository": "yeoman/yosay",
-  "bin": "cli.js",
-  "files": [
-    "index.js",
-    "cli.js"
-  ],
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && mocha"
-  },
   "dependencies": {
     "ansi-regex": "^2.0.0",
     "ansi-styles": "^3.0.0",
@@ -41,8 +40,8 @@
     "wrap-ansi": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "*",
-    "xo": "*"
+    "mocha": "^3.2.0",
+    "xo": "^0.17.0"
   },
   "xo": {
     "space": true

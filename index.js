@@ -1,16 +1,16 @@
 'use strict';
-var chalk = require('chalk');
-var pad = require('pad-component');
-var wrap = require('wrap-ansi');
-var stringWidth = require('string-width');
-var stripAnsi = require('strip-ansi');
-var ansiStyles = require('ansi-styles');
-var ansiRegex = require('ansi-regex')();
-var cliBoxes = require('cli-boxes');
+const chalk = require('chalk');
+const pad = require('pad-component');
+const wrap = require('wrap-ansi');
+const stringWidth = require('string-width');
+const stripAnsi = require('strip-ansi');
+const ansiStyles = require('ansi-styles');
+const ansiRegex = require('ansi-regex')();
+const cliBoxes = require('cli-boxes');
 
-var border = cliBoxes.round;
-var leftOffset = 17;
-var defaultGreeting =
+const border = cliBoxes.round;
+const leftOffset = 17;
+const defaultGreeting =
   '\n     _-----_     ' +
   '\n    |       |    ' +
   '\n    |' + chalk.red('--(o)--') + '|    ' +
@@ -21,7 +21,7 @@ var defaultGreeting =
   '\n   __' + chalk.yellow('\'.___.\'') + '__   ' +
   '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
 
-module.exports = function (message, options) {
+module.exports = (message, options) => {
   message = (message || 'Welcome to Yeoman, ladies and gentlemen!').trim();
   options = options || {};
 
@@ -41,24 +41,22 @@ module.exports = function (message, options) {
    * Better implementations welcome :)
    */
 
-  var maxLength = 24;
-  var frame;
-  var styledIndexes = {};
-  var completedString = '';
-  var regExNewLine;
-  var topOffset = 4;
+  let maxLength = 24;
+  const styledIndexes = {};
+  let completedString = '';
+  let topOffset = 4;
 
   // Amount of characters of the yeoman character »column«      → `    /___A___\   /`
-  var YEOMAN_CHARACTER_WIDTH = 17;
+  const YEOMAN_CHARACTER_WIDTH = 17;
 
   // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
-  var DEFAULT_TOP_FRAME_WIDTH = 28;
+  const DEFAULT_TOP_FRAME_WIDTH = 28;
 
   // Amount of characters of a total line
-  var TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
+  let TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
 
   // The speech bubble will overflow the Yeoman character if the message is too long.
-  var MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
+  const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
 
   if (options.maxLength) {
     maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
@@ -69,18 +67,17 @@ module.exports = function (message, options) {
     }
   }
 
-  regExNewLine = new RegExp('\\s{' + maxLength + '}');
+  const regExNewLine = new RegExp(`\\s{${maxLength}}`);
+  const borderHorizontal = border.horizontal.repeat(maxLength + 2);
 
-  var borderHorizontal = border.horizontal.repeat(maxLength + 2);
-
-  frame = {
+  const frame = {
     top: border.topLeft + borderHorizontal + border.topRight,
     side: ansiStyles.reset.open + border.vertical + ansiStyles.reset.open,
     bottom: ansiStyles.reset.open + border.bottomLeft + borderHorizontal + border.bottomRight
   };
 
-  message.replace(ansiRegex, function (match, offset) {
-    Object.keys(styledIndexes).forEach(function (key) {
+  message.replace(ansiRegex, (match, offset) => {
+    Object.keys(styledIndexes).forEach(key => {
       offset -= styledIndexes[key].length;
     });
 
@@ -89,9 +86,7 @@ module.exports = function (message, options) {
 
   return wrap(stripAnsi(message), maxLength, {hard: true})
     .split(/\n/)
-    .reduce(function (greeting, str, index, array) {
-      var paddedString;
-
+    .reduce((greeting, str, index, array) => {
       if (!regExNewLine.test(str)) {
         str = str.trim();
       }
@@ -100,15 +95,15 @@ module.exports = function (message, options) {
 
       str = completedString
         .substr(completedString.length - str.length)
-        .replace(/./g, function (char, charIndex) {
+        .replace(/./g, (char, charIndex) => {
           if (index > 0) {
             charIndex += completedString.length - str.length + index;
           }
 
-          var hasContinuedStyle = 0;
-          var continuedStyle;
+          let hasContinuedStyle = 0;
+          let continuedStyle;
 
-          Object.keys(styledIndexes).forEach(function (offset) {
+          Object.keys(styledIndexes).forEach(offset => {
             if (charIndex > offset) {
               hasContinuedStyle++;
               continuedStyle = styledIndexes[offset];
@@ -129,9 +124,9 @@ module.exports = function (message, options) {
         })
         .trim();
 
-      paddedString = pad({
+      const paddedString = pad({
         length: stringWidth(str),
-        valueOf: function () {
+        valueOf() {
           return ansiStyles.reset.open + str + ansiStyles.reset.open;
         }
       }, maxLength);
@@ -151,9 +146,9 @@ module.exports = function (message, options) {
         // is too long. So we vertically center the bubble by adding empty lines
         // on top of the greeting.
         if (array.length > MAX_MESSAGE_LINES_BEFORE_OVERFLOW) {
-          var emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
+          const emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
 
-          for (var i = 0; i < emptyLines; i++) {
+          for (let i = 0; i < emptyLines; i++) {
             greeting.unshift('');
           }
 
