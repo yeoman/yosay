@@ -1,5 +1,7 @@
 # yosay [![Build Status](https://travis-ci.org/yeoman/yosay.svg?branch=master)](https://travis-ci.org/yeoman/yosay)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yeoman/yosay.svg)](https://greenkeeper.io/)
+
 > Tell Yeoman what to say
 
 Like [cowsay](http://en.wikipedia.org/wiki/Cowsay), but less cow.
