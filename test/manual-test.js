@@ -53,3 +53,11 @@ console.log(yosay(
   'That’s it. Feel free to fire up the server with ' +
   '`npm run start:dev`.'
 ));
+
+console.log(yosay(
+  `Welcome to the polished ${chalk.red('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')} generator!`
+));
+
+console.log(yosay(
+  `Welcome to the polished ${chalk.red('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')} generator! Another long sentence ${chalk.yellow('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')}normal text`
+));
