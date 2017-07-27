@@ -84,7 +84,15 @@ module.exports = (message, options) => {
     styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
   });
 
-  return wrap(stripAnsi(message), maxLength, {hard: true})
+  const strippedMessage = stripAnsi(message);
+  const spacesIndex = [];
+
+  strippedMessage.split(' ').reduce((accu, cur) => {
+    spacesIndex.push(accu + cur.length);
+    return spacesIndex[spacesIndex.length - 1] + 1;
+  }, 0);
+
+  return wrap(strippedMessage, maxLength, {hard: true})
     .split(/\n/)
     .reduce((greeting, str, index, array) => {
       if (!regExNewLine.test(str)) {
@@ -93,12 +101,23 @@ module.exports = (message, options) => {
 
       completedString += str;
 
+      let offset = 0;
+
+      for (let i = 0; i < spacesIndex.length; i++) {
+        let char = completedString[spacesIndex[i] - offset];
+        if (char) {
+          if (char !== ' ') {
+            offset += 1;
+          }
+        } else {
+          break;
+        }
+      }
+
       str = completedString
         .substr(completedString.length - str.length)
         .replace(/./g, (char, charIndex) => {
-          if (index > 0) {
-            charIndex += completedString.length - str.length + index;
-          }
+          charIndex += completedString.length - str.length + offset;
 
           let hasContinuedStyle = 0;
           let continuedStyle;
