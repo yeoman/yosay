@@ -2,7 +2,7 @@
 
 > Tell Yeoman what to say
 
-Like [cowsay](http://en.wikipedia.org/wiki/Cowsay), but less cow.
+Like [cowsay](https://en.wikipedia.org/wiki/Cowsay), but less cow.
 
 ![](screenshot.png)
 
@@ -10,7 +10,7 @@ Like [cowsay](http://en.wikipedia.org/wiki/Cowsay), but less cow.
 ## Install
 
 ```
-$ npm install --save yosay
+$ npm install yosay
 ```
 
 
@@ -68,5 +68,4 @@ $ yosay --help
 
 ## License
 
-[BSD license](http://opensource.org/licenses/bsd-license.php)
-Copyright (c) Google
+BSD-2-Clause © Google
