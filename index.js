@@ -41,10 +41,10 @@ module.exports = (message, options) => {
    * Better implementations welcome :)
    */
 
-  let maxLength = 24;
   const styledIndexes = {};
-  let completedString = '';
+  let maxLength = 24;
   let topOffset = 4;
+  let completedString = '';
 
   // Amount of characters of the yeoman character »column«      → `    /___A___\   /`
   const YEOMAN_CHARACTER_WIDTH = 17;
@@ -52,11 +52,11 @@ module.exports = (message, options) => {
   // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
   const DEFAULT_TOP_FRAME_WIDTH = 28;
 
-  // Amount of characters of a total line
-  let TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
-
   // The speech bubble will overflow the Yeoman character if the message is too long.
   const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
+
+  // Amount of characters of a total line
+  let TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
 
   if (options.maxLength) {
     maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
@@ -104,7 +104,7 @@ module.exports = (message, options) => {
       let offset = 0;
 
       for (let i = 0; i < spacesIndex.length; i++) {
-        let char = completedString[spacesIndex[i] - offset];
+        const char = completedString[spacesIndex[i] - offset];
         if (char) {
           if (char !== ' ') {
             offset += 1;
@@ -135,7 +135,9 @@ module.exports = (message, options) => {
 
           if (styledIndexes[charIndex]) {
             return styledIndexes[charIndex] + char;
-          } else if (hasContinuedStyle >= 2) {
+          }
+
+          if (hasContinuedStyle >= 2) {
             return continuedStyle + char;
           }
 
