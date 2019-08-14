@@ -29,19 +29,19 @@
     "ansi"
   ],
   "dependencies": {
-    "ansi-regex": "^2.0.0",
-    "ansi-styles": "^3.0.0",
-    "chalk": "^1.0.0",
-    "cli-boxes": "^1.0.0",
+    "ansi-regex": "^4.1.0",
+    "ansi-styles": "^4.0.0",
+    "chalk": "^2.4.2",
+    "cli-boxes": "^2.2.0",
     "pad-component": "0.0.1",
-    "string-width": "^2.0.0",
-    "strip-ansi": "^3.0.0",
+    "string-width": "^4.1.0",
+    "strip-ansi": "^5.2.0",
     "taketalk": "^1.0.0",
-    "wrap-ansi": "^2.0.0"
+    "wrap-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
-    "xo": "^0.17.0"
+    "mocha": "^6.2.0",
+    "xo": "^0.24.0"
   },
   "xo": {
     "space": true

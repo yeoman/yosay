@@ -4,13 +4,13 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
-const yosay = require('../');
+const yosay = require('..');
 
 const getFixturePath = testName => path.join(__dirname, 'fixture', `${testName}.json`);
 
 const getAssertResult = (testName, expected, done) => fs.readFile(getFixturePath(testName), (err, data) => {
   assert.ifError(err);
-  assert.equal(JSON.parse(data), expected);
+  assert.strict.equal(JSON.parse(data), expected);
   done();
 });
 
