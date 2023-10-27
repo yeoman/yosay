@@ -1,13 +1,5 @@
-'use strict';
-const chalk = require('chalk');
-const yosay = require('..');
-
-/*
- * Yo. Fire this file locally with `node test/manual-test.js` at least after you
- * have newly generated the text fixtures to double check that all available
- * option have a correct looking output.
- * Thanks (ᵔᴥᵔ)
- */
+import chalk from 'chalk';
+import yosay from '../index.js';
 
 console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gum!'));
 
@@ -37,27 +29,27 @@ console.log(yosay('Lie on your belly and purr when you are asleep shove bum in o
 console.log(yosay('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball. Cough furball.', {maxLength: 26}));
 
 console.log(yosay(
-  'That’s it. Feel free to fire up the server with ' +
-  chalk.green('`npm run start:dev`') +
-  'or use our subgenerator to create endpoints.'
+	'That’s it. Feel free to fire up the server with '
+  + chalk.green('`npm run start:dev`')
+  + 'or use our subgenerator to create endpoints.',
 ));
 
 console.log(yosay('That’s it. Feel free to fire up the server with `npm run start:dev` or use our subgenerator to create endpoints.'));
 
 console.log(yosay(
-  'That’s it. Feel free to fire up the server with ' +
-  chalk.green('`npm run start:dev`') + '.'
+	'That’s it. Feel free to fire up the server with '
+  + chalk.green('`npm run start:dev`') + '.',
 ));
 
 console.log(yosay(
-  'That’s it. Feel free to fire up the server with ' +
-  '`npm run start:dev`.'
+	'That’s it. Feel free to fire up the server with '
+  + '`npm run start:dev`.',
 ));
 
 console.log(yosay(
-  `Welcome to the polished ${chalk.red('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')} generator!`
+	`Welcome to the polished ${chalk.red('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')} generator!`,
 ));
 
 console.log(yosay(
-  `Welcome to the polished ${chalk.red('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')} generator! Another long sentence ${chalk.yellow('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')}normal text`
+	`Welcome to the polished ${chalk.red('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')} generator! Another long sentence ${chalk.yellow('something iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns')}normal text`,
 ));

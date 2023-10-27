@@ -1,24 +1,18 @@
 #!/usr/bin/env node
-'use strict';
-const pkg = require('./package.json');
-const yosay = require('.');
+import meow from 'meow';
+import yosay from './index.js';
 
-require('taketalk')({
-  init(input, options) {
-    console.log(yosay(input, options));
-  },
-  help() {
-    console.log(`
-  ${pkg.description}
+const cli = meow(`
+	Usage
+	  $ yosay <string>
+	  $ yosay <string> --maxLength 8
+	  $ echo <string> | yosay
 
-  Usage
-    $ yosay <string>
-    $ yosay <string> --maxLength 8
-    $ echo <string> | yosay
-
-  Example
-    $ yosay 'Sindre is a horse'
-    ${yosay('Sindre is a horse')}`);
-  },
-  version: pkg.version
+	Example
+	  $ yosay 'Sindre is a horse'
+	  ${yosay('Sindre is a horse')}
+`, {
+	importMeta: import.meta,
 });
+
+console.log(yosay(cli.input[0], cli.flags));

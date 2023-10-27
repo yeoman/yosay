@@ -1,195 +1,197 @@
-'use strict';
-const chalk = require('chalk');
-const pad = require('pad-component');
-const wrap = require('wrap-ansi');
-const stringWidth = require('string-width');
-const stripAnsi = require('strip-ansi');
-const ansiStyles = require('ansi-styles');
-const ansiRegex = require('ansi-regex')();
-const cliBoxes = require('cli-boxes');
+import chalk from 'chalk';
+import pad from 'pad-component';
+import wrapAnsi from 'wrap-ansi';
+import stringWidth from 'string-width';
+import stripAnsi from 'strip-ansi';
+import ansiStyles from 'ansi-styles';
+import ansiRegex from 'ansi-regex';
+import cliBoxes from 'cli-boxes';
 
 const border = cliBoxes.round;
 const leftOffset = 17;
-const defaultGreeting =
-  '\n     _-----_     ' +
-  '\n    |       |    ' +
-  '\n    |' + chalk.red('--(o)--') + '|    ' +
-  '\n   `---------´   ' +
-  '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '    ' +
-  '\n    /___A___\\   /' +
-  '\n     ' + chalk.yellow('|  ~  |') + '     ' +
-  '\n   __' + chalk.yellow('\'.___.\'') + '__   ' +
-  '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
 
-module.exports = (message, options) => {
-  message = (message || 'Welcome to Yeoman, ladies and gentlemen!').trim();
-  options = options || {};
+const defaultGreeting
+	= '\n     _-----_     '
+	+ '\n    |       |    '
+	+ '\n    |' + chalk.red('--(o)--') + '|    '
+	+ '\n   `---------´   '
+	+ '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '    '
+	+ '\n    /___A___\\   /'
+	+ '\n     ' + chalk.yellow('|  ~  |') + '     '
+	+ '\n   __' + chalk.yellow('\'.___.\'') + '__   '
+	+ '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
 
-  /*
-   * What you're about to see may confuse you. And rightfully so. Here's an
-   * explanation.
-   *
-   * When yosay is given a string, we create a duplicate with the ansi styling
-   * sucked out. This way, the true length of the string is read by `pad` and
-   * `wrap`, so they can correctly do their job without getting tripped up by
-   * the "invisible" ansi. Along with the duplicated, non-ansi string, we store
-   * the character position of where the ansi was, so that when we go back over
-   * each line that will be printed out in the message box, we check the
-   * character position to see if it needs any styling, then re-insert it if
-   * necessary.
-   *
-   * Better implementations welcome :)
-   */
+export default function yosay(message, options = {}) {
+	message = (message ?? 'Welcome to Yeoman, ladies and gentlemen!').trim();
 
-  const styledIndexes = {};
-  let maxLength = 24;
-  let topOffset = 4;
-  let completedString = '';
+	/*
+	What you're about to see may confuse you. And rightfully so. Here's an explanation.
 
-  // Amount of characters of the yeoman character »column«      → `    /___A___\   /`
-  const YEOMAN_CHARACTER_WIDTH = 17;
+	When yosay is given a string, we create a duplicate with the ansi styling
+	sucked out. This way, the true length of the string is read by `pad` and
+	`wrap`, so they can correctly do their job without getting tripped up by
+	the "invisible" ansi. Along with the duplicated, non-ansi string, we store
+	the character position of where the ansi was, so that when we go back over
+	each line that will be printed out in the message box, we check the
+	character position to see if it needs any styling, then re-insert it if
+	necessary.
 
-  // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
-  const DEFAULT_TOP_FRAME_WIDTH = 28;
+	Better implementations welcome :)
+	*/
 
-  // The speech bubble will overflow the Yeoman character if the message is too long.
-  const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
+	const styledIndexes = {};
+	let maxLength = 24;
+	let topOffset = 4;
+	let completedString = '';
 
-  // Amount of characters of a total line
-  let TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
+	// Amount of characters of the yeoman character »column«      → `    /___A___\   /`
+	const YEOMAN_CHARACTER_WIDTH = 17;
 
-  if (options.maxLength) {
-    maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
+	// Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
+	const DEFAULT_TOP_FRAME_WIDTH = 28;
 
-    if (maxLength < options.maxLength) {
-      maxLength = options.maxLength;
-      TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
-    }
-  }
+	// The speech bubble will overflow the Yeoman character if the message is too long.
+	const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
 
-  const regExNewLine = new RegExp(`\\s{${maxLength}}`);
-  const borderHorizontal = border.horizontal.repeat(maxLength + 2);
+	// Amount of characters of a total line
+	let TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
 
-  const frame = {
-    top: border.topLeft + borderHorizontal + border.topRight,
-    side: ansiStyles.reset.open + border.vertical + ansiStyles.reset.open,
-    bottom: ansiStyles.reset.open + border.bottomLeft + borderHorizontal + border.bottomRight
-  };
+	if (options.maxLength) {
+		maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
 
-  message.replace(ansiRegex, (match, offset) => {
-    Object.keys(styledIndexes).forEach(key => {
-      offset -= styledIndexes[key].length;
-    });
+		if (maxLength < options.maxLength) {
+			maxLength = options.maxLength;
+			TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
+		}
+	}
 
-    styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
-  });
+	const regexNewline = new RegExp(`\\s{${maxLength}}`);
+	const borderHorizontal = border.top.repeat(maxLength + 2);
 
-  const strippedMessage = stripAnsi(message);
-  const spacesIndex = [];
+	const frame = {
+		top: border.topLeft + borderHorizontal + border.topRight,
+		side: ansiStyles.reset.open + border.left + ansiStyles.reset.open,
+		bottom: ansiStyles.reset.open + border.bottomLeft + borderHorizontal + border.bottomRight,
+	};
 
-  strippedMessage.split(' ').reduce((accu, cur) => {
-    spacesIndex.push(accu + cur.length);
-    return spacesIndex[spacesIndex.length - 1] + 1;
-  }, 0);
+	message.replace(ansiRegex(), (match, offset) => {
+		for (const value of Object.values(styledIndexes)) {
+			offset -= value.length;
+		}
 
-  return wrap(strippedMessage, maxLength, {hard: true})
-    .split(/\n/)
-    .reduce((greeting, str, index, array) => {
-      if (!regExNewLine.test(str)) {
-        str = str.trim();
-      }
+		styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
+	});
 
-      completedString += str;
+	const strippedMessage = stripAnsi(message);
+	const spacesIndex = [];
 
-      let offset = 0;
+	// TODO: Remove `.reduce`.
+	// eslint-disable-next-line unicorn/no-array-reduce
+	strippedMessage.split(' ').reduce((accumulator, currentValue) => {
+		spacesIndex.push(accumulator + currentValue.length);
+		return spacesIndex.at(-1) + 1;
+	}, 0);
 
-      for (let i = 0; i < spacesIndex.length; i++) {
-        const char = completedString[spacesIndex[i] - offset];
-        if (char) {
-          if (char !== ' ') {
-            offset += 1;
-          }
-        } else {
-          break;
-        }
-      }
+	return wrapAnsi(strippedMessage, maxLength, {hard: true})
+		.split(/\n/)
+		// TODO: Remove `.reduce`.
+		// eslint-disable-next-line unicorn/no-array-reduce
+		.reduce((greeting, string_, index, array) => {
+			if (!regexNewline.test(string_)) {
+				string_ = string_.trim();
+			}
 
-      str = completedString
-        .substr(completedString.length - str.length)
-        .replace(/./g, (char, charIndex) => {
-          charIndex += completedString.length - str.length + offset;
+			completedString += string_;
 
-          let hasContinuedStyle = 0;
-          let continuedStyle;
+			let offset = 0;
 
-          Object.keys(styledIndexes).forEach(offset => {
-            if (charIndex > offset) {
-              hasContinuedStyle++;
-              continuedStyle = styledIndexes[offset];
-            }
+			for (const element of spacesIndex) {
+				const character = completedString[element - offset];
+				if (character) {
+					if (character !== ' ') {
+						offset += 1;
+					}
+				} else {
+					break;
+				}
+			}
 
-            if (hasContinuedStyle === 1 && charIndex < offset) {
-              hasContinuedStyle++;
-            }
-          });
+			string_ = completedString
+				.slice(completedString.length - string_.length)
+				.replaceAll(/./g, (character, characterIndex) => {
+					characterIndex += completedString.length - string_.length + offset;
 
-          if (styledIndexes[charIndex]) {
-            return styledIndexes[charIndex] + char;
-          }
+					let hasContinuedStyle = 0;
+					let continuedStyle;
 
-          if (hasContinuedStyle >= 2) {
-            return continuedStyle + char;
-          }
+					for (const offset of Object.keys(styledIndexes)) {
+						if (characterIndex > offset) {
+							hasContinuedStyle++;
+							continuedStyle = styledIndexes[offset];
+						}
 
-          return char;
-        })
-        .trim();
+						if (hasContinuedStyle === 1 && characterIndex < offset) {
+							hasContinuedStyle++;
+						}
+					}
 
-      const paddedString = pad({
-        length: stringWidth(str),
-        valueOf() {
-          return ansiStyles.reset.open + str + ansiStyles.reset.open;
-        }
-      }, maxLength);
+					if (styledIndexes[characterIndex]) {
+						return styledIndexes[characterIndex] + character;
+					}
 
-      if (index === 0) {
-        // Need to adjust the top position of the speech bubble depending on the
-        // amount of lines of the message.
-        if (array.length === 2) {
-          topOffset -= 1;
-        }
+					if (hasContinuedStyle >= 2) {
+						return continuedStyle + character;
+					}
 
-        if (array.length >= 3) {
-          topOffset -= 2;
-        }
+					return character;
+				})
+				.trim();
 
-        // The speech bubble will overflow the Yeoman character if the message
-        // is too long. So we vertically center the bubble by adding empty lines
-        // on top of the greeting.
-        if (array.length > MAX_MESSAGE_LINES_BEFORE_OVERFLOW) {
-          const emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
+			const paddedString = pad({
+				length: stringWidth(string_),
+				valueOf() {
+					return ansiStyles.reset.open + string_ + ansiStyles.reset.open;
+				},
+			}, maxLength);
 
-          for (let i = 0; i < emptyLines; i++) {
-            greeting.unshift('');
-          }
+			if (index === 0) {
+				// Need to adjust the top position of the speech bubble depending on the
+				// amount of lines of the message.
+				if (array.length === 2) {
+					topOffset -= 1;
+				}
 
-          frame.top = pad.left(frame.top, TOTAL_CHARACTERS_PER_LINE);
-        }
+				if (array.length >= 3) {
+					topOffset -= 2;
+				}
 
-        greeting[topOffset - 1] += frame.top;
-      }
+				// The speech bubble will overflow the Yeoman character if the message
+				// is too long. So we vertically center the bubble by adding empty lines
+				// on top of the greeting.
+				if (array.length > MAX_MESSAGE_LINES_BEFORE_OVERFLOW) {
+					const emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
 
-      greeting[index + topOffset] =
-        (greeting[index + topOffset] || pad.left('', leftOffset)) +
-        frame.side + ' ' + paddedString + ' ' + frame.side;
+					for (let i = 0; i < emptyLines; i++) {
+						greeting.unshift('');
+					}
 
-      if (array.length === index + 1) {
-        greeting[index + topOffset + 1] =
-          (greeting[index + topOffset + 1] || pad.left('', leftOffset)) +
-          frame.bottom;
-      }
+					frame.top = pad.left(frame.top, TOTAL_CHARACTERS_PER_LINE);
+				}
 
-      return greeting;
-    }, defaultGreeting.split(/\n/))
-    .join('\n') + '\n';
-};
+				greeting[topOffset - 1] += frame.top;
+			}
+
+			greeting[index + topOffset]
+				= (greeting[index + topOffset] || pad.left('', leftOffset))
+				+ frame.side + ' ' + paddedString + ' ' + frame.side;
+
+			if (array.length === index + 1) {
+				greeting[index + topOffset + 1]
+					= (greeting[index + topOffset + 1] || pad.left('', leftOffset))
+					+ frame.bottom;
+			}
+
+			return greeting;
+		}, defaultGreeting.split(/\n/))
+		.join('\n') + '\n';
+}
